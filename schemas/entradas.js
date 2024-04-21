@@ -1,39 +1,41 @@
-const { db } = require('../config/sqlConnection');
-const { DataTypes } = require('sequelize');
+const { db } = require("../config/sqlConnection");
+const { DataTypes } = require("sequelize");
 
-const Entradas = db.define("Entradas", {
+const Entradas = db.define(
+  "Entradas",
+  {
     idEntry: {
-        field: "id_entry",
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+      field: "id_entry",
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
+      primaryKey: true,
     },
     idAuthor: {
-        field: "id_author",
-        type: DataTypes.UUID,
+      field: "id_author",
+      type: DataTypes.UUID,
     },
     title: {
-        field: "title",
-        type: DataTypes.STRING(150),
+      field: "title",
+      type: DataTypes.STRING(150),
     },
     content: {
-        field: "content",
-        type: DataTypes.STRING(1000),
+      field: "content",
+      type: DataTypes.STRING(1000),
     },
     date: {
-        field: "date",
-        type: DataTypes.DATE,
-        defaultValue: new Date()
+      field: "date",
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
     },
-
-}, {
+  },
+  {
     db,
-    modelName: 'Entradas',
-    tableName: 'entradas',
-    timestamps: 'true',
-});
+    modelName: "Entradas",
+    tableName: "entradas",
+    timestamps: "true",
+  }
+);
 
-
-Entradas.sync();
+Entradas.sync({ alter: true });
 
 module.exports = Entradas;
